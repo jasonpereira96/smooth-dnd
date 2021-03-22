@@ -78,13 +78,16 @@ function getGhostParent() {
 }
 
 function getGhostElement(wrapperElement: HTMLElement, { x, y }: Position, container: IContainer, cursor: string): GhostInfo {
-  const wrapperRect = wrapperElement.getBoundingClientRect();
-  const { left, top, right, bottom } = wrapperRect;
+  // const wrapperRect = wrapperElement.getBoundingClientRect();
+  // const { left, top, right, bottom } = wrapperRect;
 
-  const wrapperVisibleRect = Utils.getIntersection(container.layout.getContainerRectangles().visibleRect, wrapperRect);
+  // const wrapperVisibleRect = Utils.getIntersection(container.layout.getContainerRectangles().visibleRect, wrapperRect);
+  const { left, top, right, bottom } = wrapperElement.getBoundingClientRect();
+  const midX = left + (right - left) / 2;
+  const midY = top + (bottom - top) / 2;
 
-  const midX = wrapperVisibleRect.left + (wrapperVisibleRect.right - wrapperVisibleRect.left) / 2;
-  const midY = wrapperVisibleRect.top + (wrapperVisibleRect.bottom - wrapperVisibleRect.top) / 2;
+  // const midX = wrapperVisibleRect.left + (wrapperVisibleRect.right - wrapperVisibleRect.left) / 2;
+  // const midY = wrapperVisibleRect.top + (wrapperVisibleRect.bottom - wrapperVisibleRect.top) / 2;
   const ghost: HTMLElement = wrapperElement.cloneNode(true) as HTMLElement;
   ghost.style.zIndex = '1000';
   ghost.style.boxSizing = 'border-box';
